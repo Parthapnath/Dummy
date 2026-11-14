@@ -1,322 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Happy Birthday Medha!</title>
-    <!-- Importing Poppins font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Base Reset & Typography */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        /* 
-           FIX: Separated the animated background into its own fixed container.
-           This allows the body to scroll normally on mobile devices if the card is tall. 
-        */
-        .bg-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #a18cd1, #fbc2eb);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            overflow: hidden; /* Only hides floating elements, not the page content */
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Floating Background Elements */
-        .circles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        .circles li {
-            position: absolute;
-            display: block;
-            list-style: none;
-            width: 20px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 50%;
-            animation: animate 25s linear infinite;
-            bottom: -150px;
-        }
-
-        .circles li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
-        .circles li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
-        .circles li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
-        .circles li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
-        .circles li:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
-        .circles li:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
-        .circles li:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
-        .circles li:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
-        .circles li:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
-        .circles li:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
-
-        @keyframes animate {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 50%; }
-            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 20%; }
-        }
-
-        /* Body styling restored for safe scrolling */
-        body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #333;
-            padding: 20px;
-        }
-
-        /* Main Card */
-        .card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 24px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-            max-width: 550px; 
-            width: 100%;
-            text-align: center;
-            padding: 3rem 2.5rem;
-            position: relative;
-            z-index: 1;
-            /* Adds safe space top and bottom for scrolling on small screens */
-            margin: 20px 0; 
-        }
-
-        /* Profile Photo Styling */
-        .photo-container {
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 1.5rem;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 5px solid #fff;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease;
-        }
-
-        .photo-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Typography */
-        h1 {
-            color: #2d3436;
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, #ff6b81, #5f27cd);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .subtitle {
-            color: #636e72;
-            font-size: 1.1rem;
-            margin-bottom: 1.8rem;
-            font-weight: 400;
-        }
-
-        /* Tags for Interests */
-        .hobbies {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1.8rem;
-        }
-
-        .hobby-tag {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 0.6rem 1.2rem;
-            border-radius: 30px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #2d3436;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        /* Main Body Text */
-        .message {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 2.5rem;
-            color: #4a4a4a;
-        }
-
-        /* Interactive Button */
-        .btn {
-            background: linear-gradient(45deg, #ff6b81, #ff4757);
-            color: white;
-            border: none;
-            padding: 1rem 2.5rem;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            box-shadow: 0 4px 15px rgba(255, 107, 129, 0.4);
-            /* Prevents double-tap zoom on mobile */
-            touch-action: manipulation; 
-        }
-
-        /* Surprise Message */
-        .hidden-message {
-            display: none;
-            margin-top: 1.8rem;
-            padding: 1.5rem;
-            background: rgba(255, 240, 242, 0.9);
-            border-radius: 16px;
-            color: #ff4757;
-            font-weight: 600;
-            font-size: 1.05rem;
-            border: 1px dashed #ff4757;
-            animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        @keyframes bounceIn {
-            0% { opacity: 0; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-
-        /* FIX: Mobile Responsiveness */
-        @media (max-width: 600px) {
-            .card {
-                padding: 2rem 1.2rem;
-                margin: 10px 0;
-            }
-            .photo-container {
-                width: 130px;
-                height: 130px;
-                margin-bottom: 1rem;
-            }
-            h1 {
-                font-size: 1.6rem;
-            }
-            .subtitle {
-                font-size: 0.95rem;
-                margin-bottom: 1.2rem;
-            }
-            .hobbies {
-                gap: 0.5rem;
-                margin-bottom: 1.2rem;
-            }
-            .hobby-tag {
-                padding: 0.5rem 0.9rem;
-                font-size: 0.85rem;
-            }
-            .message {
-                font-size: 0.95rem;
-                margin-bottom: 1.5rem;
-            }
-            .btn {
-                padding: 0.8rem 1.5rem;
-                font-size: 1rem;
-            }
-            .hidden-message {
-                padding: 1rem;
-                font-size: 0.95rem;
-                margin-top: 1.2rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#16202b">
+  <title>Happy Birthday, Medha!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <canvas id="confetti" aria-hidden="true"></canvas>
 
-    <!-- Fixed Background Layer -->
-    <div class="bg-wrapper">
-        <ul class="circles">
-            <li></li><li></li><li></li><li></li><li></li>
-            <li></li><li></li><li></li><li></li><li></li>
-        </ul>
+  <header class="hero">
+    <div class="photo-frame">
+      <img src="screenshot.jpeg" alt="Medha in her graduation gown and cap in front of Hindu College" width="540" height="792">
     </div>
-
-    <!-- Scrollable Content Layer -->
-    <div class="card">
-        <div class="photo-container">
-            <img src="screenshot.jpeg" alt="Medha Barooah">
-        </div>
-        
-        <h1>Happy Birthday, Medha! 🎉</h1>
-        <div class="subtitle">Rocking it at Hindu College 🎓</div>
-        
-        <div class="hobbies">
-            <span class="hobby-tag">♟️ Chess Master</span>
-            <span class="hobby-tag">✈️ Global Explorer</span>
-        </div>
-
-        <div class="message">
-            From dominating the chessboard to traveling and exploring new horizons, you always know how to make the best moves. Wishing you an incredible birthday and an amazing year ahead!
-        </div>
-
-        <button class="btn" id="surpriseBtn">Tap for a Birthday Surprise!</button>
-
-        <div class="hidden-message" id="hiddenMsg">
-            Here's to checking off more destinations from your travel bucket list this year! Have the best day ever! 🎂🌟
-        </div>
+    <div class="hero-text">
+      <p class="sub">Batch of 2026 · Hindu College</p>
+      <h1>Happy Birthday, <span>Medha!</span></h1>
+      <p class="lead">Graduate, chess player, explorer. This page is for you.</p>
+      <button class="btn" id="party">Start the party</button>
     </div>
+  </header>
 
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    
-    <script>
-        const btn = document.getElementById('surpriseBtn');
-        const hiddenMsg = document.getElementById('hiddenMsg');
+  <main>
+    <section class="block" aria-labelledby="cake-h">
+      <h2 id="cake-h">Make a wish</h2>
+      <p class="hint" id="cake-hint">Tap each candle to blow it out.</p>
+      <div class="cake" role="group" aria-label="Birthday cake with three candles">
+        <button class="candle" aria-label="Candle 1, lit"><i class="flame"></i></button>
+        <button class="candle" aria-label="Candle 2, lit"><i class="flame"></i></button>
+        <button class="candle" aria-label="Candle 3, lit"><i class="flame"></i></button>
+        <div class="tier t1"></div><div class="tier t2"></div>
+      </div>
+      <p class="wish" id="wish" hidden>Wish made. May it come true this year.</p>
+    </section>
 
-        btn.addEventListener('click', () => {
-            var duration = 3 * 1000;
-            var animationEnd = Date.now() + duration;
-            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100 }; // Boosted z-index for mobile
+    <section class="block" aria-labelledby="cards-h">
+      <h2 id="cards-h">Three things I wish for you</h2>
+      <div class="cards">
+        <button class="flip" aria-pressed="false"><span class="face front">The graduate</span><span class="face back">Congratulations on Batch of 2026. History taught you that every great story has a next chapter. Go write yours.</span></button>
+        <button class="flip" aria-pressed="false"><span class="face front">The strategist</span><span class="face back">May every year be a good opening: you think a few moves ahead and still enjoy the game.</span></button>
+        <button class="flip" aria-pressed="false"><span class="face front">The traveller</span><span class="face back">May this year take you to places you have only dreamed of, with great company.</span></button>
+      </div>
+      <p class="hint">Tap a card to flip it.</p>
+    </section>
 
-            function randomInRange(min, max) {
-              return Math.random() * (max - min) + min;
-            }
+    <section class="block board" aria-labelledby="chess-h">
+      <h2 id="chess-h">Your move</h2>
+      <div class="knight" aria-hidden="true">♞</div>
+      <p class="move" id="move" aria-live="polite">Tap the button for a birthday move.</p>
+      <button class="btn" id="moveBtn">Play a move</button>
+    </section>
 
-            var interval = setInterval(function() {
-              var timeLeft = animationEnd - Date.now();
 
-              if (timeLeft <= 0) {
-                return clearInterval(interval);
-              }
+    <section class="block note" aria-labelledby="note-h">
+      <h2 id="note-h">A note from me</h2>
+      <p id="note">Many Many happy returns of the day, May all your dreams come true this year.</p>
+    </section>
+  </main>
 
-              var particleCount = 50 * (timeLeft / duration);
-              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
-              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
-            }, 250);
-
-            hiddenMsg.style.display = 'block';
-            
-            btn.textContent = 'Keep Celebrating! 🎈';
-            btn.style.background = 'linear-gradient(45deg, #1dd1a1, #10ac84)';
-            btn.style.boxShadow = '0 8px 25px rgba(29, 209, 161, 0.5)';
-        });
-    </script>
+  <footer>Made with care for Medha · Happy Birthday!</footer>
+  <script src="script.js"></script>
 </body>
 </html>

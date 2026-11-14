@@ -1,0 +1,100 @@
+:root{
+  --ink:#16202b; --mint:#e6f2ee; --teal:#2f7f73; --brick:#b5412f;
+  --blue:#1f4fd1; --gold:#e3b23c; --white:#fff;
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  background:var(--mint);color:var(--ink);line-height:1.6;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+h1,h2{font-family:Fraunces,Georgia,"Times New Roman",serif;line-height:1.1}
+#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+
+/* Hero */
+.hero{
+  display:grid;gap:1.5rem;justify-items:center;text-align:center;
+  padding:2rem 1.25rem 2.5rem;max-width:1000px;margin:0 auto;
+}
+.photo-frame{
+  width:min(78vw,340px);aspect-ratio:3/4;padding:10px;border-radius:var(--radius);
+  background:repeating-conic-gradient(var(--ink) 0 25%,var(--white) 0 50%) 0 0/40px 40px;
+  box-shadow:0 14px 30px rgba(22,32,43,.25);
+}
+.photo-frame img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;border-radius:10px;display:block}
+.sub{color:var(--teal);font-weight:700;font-size:.95rem}
+h1{font-size:clamp(2.2rem,9vw,4rem);font-weight:800;margin:.3rem 0 .6rem}
+h1 span{color:var(--brick)}
+.lead{font-size:clamp(1rem,3.5vw,1.2rem);max-width:30ch;margin:0 auto 1.2rem}
+@media (min-width:760px){
+  .hero{grid-template-columns:auto 1fr;text-align:left;justify-items:start;gap:3rem;padding-top:3rem}
+  .lead{margin-left:0}
+}
+
+/* Buttons */
+.btn{
+  font:inherit;font-weight:700;border:0;cursor:pointer;color:var(--white);background:var(--blue);
+  min-height:48px;padding:.8rem 1.6rem;border-radius:999px;
+  box-shadow:0 4px 0 #14349a;transition:transform .1s,box-shadow .1s;touch-action:manipulation;
+}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #14349a}
+
+/* Sections */
+main{max-width:760px;margin:0 auto;padding:0 1.25rem}
+.block{background:var(--white);border-radius:var(--radius);padding:1.75rem 1.25rem;margin-bottom:1.5rem;text-align:center;box-shadow:0 6px 18px rgba(22,32,43,.08)}
+h2{font-size:clamp(1.5rem,5.5vw,2rem);margin-bottom:.6rem}
+.hint{font-size:.9rem;color:#4b5a66;margin-top:.8rem}
+
+/* Cake */
+.cake{position:relative;width:min(260px,70vw);height:200px;margin:1.5rem auto 0}
+.tier{position:absolute;left:50%;transform:translateX(-50%);border-radius:12px 12px 6px 6px}
+.t1{bottom:0;width:100%;height:80px;background:var(--brick);box-shadow:inset 0 14px 0 #f6d9d2}
+.t2{bottom:80px;width:72%;height:60px;background:var(--gold);box-shadow:inset 0 12px 0 #fff3cf}
+.candle{
+  position:absolute;bottom:138px;width:34px;height:64px;background:none;border:0;cursor:pointer;padding:0;touch-action:manipulation;z-index:2;
+}
+.candle::after{content:"";position:absolute;bottom:0;left:50%;width:10px;height:34px;transform:translateX(-50%);background:var(--blue);border-radius:3px}
+.candle:nth-child(1){left:22%}.candle:nth-child(2){left:calc(50% - 17px)}.candle:nth-child(3){right:22%}
+.flame{
+  position:absolute;top:2px;left:50%;width:14px;height:22px;transform:translateX(-50%);
+  background:radial-gradient(circle at 50% 70%,#fff3a0,#ff9f1c 70%);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
+  animation:flicker .5s infinite alternate;
+}
+.candle.out .flame{display:none}
+@keyframes flicker{to{transform:translateX(-50%) scale(.9,1.08) rotate(3deg)}}
+.wish{font-family:Fraunces,Georgia,serif;font-weight:600;margin-top:1rem;color:var(--brick)}
+
+/* Flip cards */
+.cards{display:grid;gap:1rem;margin-top:1rem}
+.flip{
+  font:inherit;color:inherit;border:0;background:none;padding:0;cursor:pointer;perspective:900px;
+  min-height:150px;width:100%;touch-action:manipulation;
+}
+.face{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:1rem;border-radius:14px;
+  backface-visibility:hidden;transition:transform .55s;
+}
+.flip{position:relative}
+.front{background:var(--ink);color:var(--white);font-family:Fraunces,Georgia,serif;font-size:1.4rem;font-weight:600}
+.back{background:var(--mint);border:2px solid var(--teal);transform:rotateY(180deg);font-size:.98rem}
+.flip.on .front{transform:rotateY(180deg)}
+.flip.on .back{transform:rotateY(360deg)}
+@media (min-width:640px){.cards{grid-template-columns:repeat(3,1fr)}.flip{min-height:230px}}
+
+/* Chess */
+.board{background:var(--ink);color:var(--white)}
+.board .btn{background:var(--gold);color:var(--ink);box-shadow:0 4px 0 #a47d16}
+.board .btn:active{box-shadow:0 1px 0 #a47d16}
+.knight{font-size:3.5rem;line-height:1;animation:hop 2s ease-in-out infinite}
+@keyframes hop{50%{transform:translateY(-8px)}}
+.move{min-height:4.5em;margin:.6rem auto 1rem;max-width:32ch;font-size:1.05rem}
+
+.note p{max-width:46ch;margin:0 auto;font-size:1.05rem}
+footer{text-align:center;padding:1rem 1rem 2.5rem;font-size:.9rem;color:#4b5a66}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
