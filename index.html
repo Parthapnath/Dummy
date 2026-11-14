@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Happy Birthday Medha!</title>
     <!-- Importing Poppins font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -16,19 +16,21 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        body {
-            /* Vibrant Animated Gradient Background */
+        /* 
+           FIX: Separated the animated background into its own fixed container.
+           This allows the body to scroll normally on mobile devices if the card is tall. 
+        */
+        .bg-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
             background: linear-gradient(-45deg, #ff9a9e, #fecfef, #a18cd1, #fbc2eb);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #333;
-            padding: 20px;
-            overflow: hidden; /* Hide scrollbars for floating elements */
-            position: relative;
+            overflow: hidden; /* Only hides floating elements, not the page content */
         }
 
         @keyframes gradientBG {
@@ -37,14 +39,13 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Floating Background Elements to fill empty space */
+        /* Floating Background Elements */
         .circles {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
             z-index: 0;
         }
 
@@ -76,7 +77,17 @@
             100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 20%; }
         }
 
-        /* Upgraded Glassmorphism Card */
+        /* Body styling restored for safe scrolling */
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            padding: 20px;
+        }
+
+        /* Main Card */
         .card {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
@@ -84,12 +95,14 @@
             border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 24px;
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-            max-width: 550px; /* Made wider for desktop */
+            max-width: 550px; 
             width: 100%;
             text-align: center;
             padding: 3rem 2.5rem;
             position: relative;
             z-index: 1;
+            /* Adds safe space top and bottom for scrolling on small screens */
+            margin: 20px 0; 
         }
 
         /* Profile Photo Styling */
@@ -102,10 +115,6 @@
             border: 5px solid #fff;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             transition: transform 0.3s ease;
-        }
-
-        .photo-container:hover {
-            transform: scale(1.05) rotate(2deg);
         }
 
         .photo-container img {
@@ -152,11 +161,6 @@
             align-items: center;
             gap: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
-        }
-
-        .hobby-tag:hover {
-            transform: translateY(-3px);
         }
 
         /* Main Body Text */
@@ -180,11 +184,8 @@
             transition: all 0.3s ease;
             width: 100%;
             box-shadow: 0 4px 15px rgba(255, 107, 129, 0.4);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 25px rgba(255, 71, 87, 0.5);
+            /* Prevents double-tap zoom on mobile */
+            touch-action: manipulation; 
         }
 
         /* Surprise Message */
@@ -205,19 +206,62 @@
             0% { opacity: 0; transform: scale(0.8); }
             100% { opacity: 1; transform: scale(1); }
         }
+
+        /* FIX: Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .card {
+                padding: 2rem 1.2rem;
+                margin: 10px 0;
+            }
+            .photo-container {
+                width: 130px;
+                height: 130px;
+                margin-bottom: 1rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            .subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 1.2rem;
+            }
+            .hobbies {
+                gap: 0.5rem;
+                margin-bottom: 1.2rem;
+            }
+            .hobby-tag {
+                padding: 0.5rem 0.9rem;
+                font-size: 0.85rem;
+            }
+            .message {
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
+            }
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            .hidden-message {
+                padding: 1rem;
+                font-size: 0.95rem;
+                margin-top: 1.2rem;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Floating Background Elements -->
-    <ul class="circles">
-        <li></li><li></li><li></li><li></li><li></li>
-        <li></li><li></li><li></li><li></li><li></li>
-    </ul>
+    <!-- Fixed Background Layer -->
+    <div class="bg-wrapper">
+        <ul class="circles">
+            <li></li><li></li><li></li><li></li><li></li>
+            <li></li><li></li><li></li><li></li><li></li>
+        </ul>
+    </div>
 
+    <!-- Scrollable Content Layer -->
     <div class="card">
         <div class="photo-container">
-            <!-- Referencing the exact file name provided -->
             <img src="screenshot.jpeg" alt="Medha Barooah">
         </div>
         
@@ -240,7 +284,6 @@
         </div>
     </div>
 
-    <!-- Confetti Script -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     
     <script>
@@ -248,10 +291,9 @@
         const hiddenMsg = document.getElementById('hiddenMsg');
 
         btn.addEventListener('click', () => {
-            // High-intensity confetti burst
             var duration = 3 * 1000;
             var animationEnd = Date.now() + duration;
-            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100 }; // Boosted z-index for mobile
 
             function randomInRange(min, max) {
               return Math.random() * (max - min) + min;
@@ -269,10 +311,8 @@
               confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
             }, 250);
 
-            // Show hidden message with new animation
             hiddenMsg.style.display = 'block';
             
-            // Update button
             btn.textContent = 'Keep Celebrating! 🎈';
             btn.style.background = 'linear-gradient(45deg, #1dd1a1, #10ac84)';
             btn.style.boxShadow = '0 8px 25px rgba(29, 209, 161, 0.5)';
